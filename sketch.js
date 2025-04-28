@@ -10,9 +10,7 @@ function setup() {
 
   // 建立與攝影機影像相同大小的圖形緩衝區
   overlayGraphics = createGraphics(capture.width, capture.height);
-  overlayGraphics.fill(255, 0, 0, 100); // 半透明紅色
-  overlayGraphics.noStroke();
-  overlayGraphics.rect(0, 0, overlayGraphics.width, overlayGraphics.height); // 填滿整個緩衝區
+  drawOverlayGraphics(); // 繪製 overlayGraphics 的內容
 }
 
 function draw() {
@@ -43,7 +41,18 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight); // 當視窗大小改變時，調整畫布大小
   capture.size(windowWidth * 0.8, windowHeight * 0.8); // 更新影像大小
   overlayGraphics = createGraphics(capture.width, capture.height); // 重新建立圖形緩衝區
-  overlayGraphics.fill(255, 0, 0, 100); // 半透明紅色
+  drawOverlayGraphics(); // 重新繪製 overlayGraphics 的內容
+}
+
+function drawOverlayGraphics() {
+  overlayGraphics.background(0); // 設定背景為黑色
   overlayGraphics.noStroke();
-  overlayGraphics.rect(0, 0, overlayGraphics.width, overlayGraphics.height); // 填滿整個緩衝區
+  overlayGraphics.fill(255, 0, 0, 100); // 半透明紅色
+
+  // 每隔 20 單位繪製一個圓
+  for (let x = 0; x < overlayGraphics.width; x += 20) {
+    for (let y = 0; y < overlayGraphics.height; y += 20) {
+      overlayGraphics.ellipse(x + 10, y + 10, 10, 10); // 圓心偏移 10，直徑為 10
+    }
+  }
 }

@@ -12,12 +12,7 @@ function setup() {
   overlayGraphics = createGraphics(capture.width, capture.height);
   overlayGraphics.fill(255, 0, 0, 100); // 半透明紅色
   overlayGraphics.noStroke();
-  overlayGraphics.ellipse(
-    overlayGraphics.width / 2,
-    overlayGraphics.height / 2,
-    overlayGraphics.width * 0.5,
-    overlayGraphics.height * 0.5
-  ); // 在圖形上繪製一個紅色圓形
+  overlayGraphics.rect(0, 0, overlayGraphics.width, overlayGraphics.height); // 填滿整個緩衝區
 }
 
 function draw() {
@@ -50,10 +45,5 @@ function windowResized() {
   overlayGraphics = createGraphics(capture.width, capture.height); // 重新建立圖形緩衝區
   overlayGraphics.fill(255, 0, 0, 100); // 半透明紅色
   overlayGraphics.noStroke();
-  overlayGraphics.ellipse(
-    overlayGraphics.width / 2,
-    overlayGraphics.height / 2,
-    overlayGraphics.width * 0.5,
-    overlayGraphics.height * 0.5
-  ); // 在圖形上繪製一個紅色圓形
+  overlayGraphics.rect(0, 0, overlayGraphics.width, overlayGraphics.height); // 填滿整個緩衝區
 }

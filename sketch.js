@@ -47,12 +47,14 @@ function windowResized() {
 function drawOverlayGraphics() {
   overlayGraphics.background(0); // 設定背景為黑色
   overlayGraphics.noStroke();
-  overlayGraphics.fill(255, 0, 0, 100); // 半透明紅色
 
   // 每隔 20 單位繪製一個圓
   for (let x = 0; x < overlayGraphics.width; x += 20) {
     for (let y = 0; y < overlayGraphics.height; y += 20) {
-      overlayGraphics.ellipse(x + 10, y + 10, 10, 10); // 圓心偏移 10，直徑為 10
+      // 從 capture 中取得相對應位置的顏色
+      let col = capture.get(x, y);
+      overlayGraphics.fill(col); // 設定圓的顏色
+      overlayGraphics.ellipse(x + 10, y + 10, 15, 15); // 圓心偏移 10，直徑為 15
     }
   }
 }

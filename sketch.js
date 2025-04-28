@@ -53,7 +53,9 @@ function drawOverlayGraphics() {
     for (let y = 0; y < overlayGraphics.height; y += 20) {
       // 從 capture 中取得相對應位置的顏色
       let col = capture.get(x, y);
-      overlayGraphics.fill(col); // 設定圓的顏色
+      // 計算灰階值 (RGB 相加後除以 3)
+      let gray = (red(col) + green(col) + blue(col)) / 3;
+      overlayGraphics.fill(gray); // 設定圓的顏色為灰階值
       overlayGraphics.ellipse(x + 10, y + 10, 15, 15); // 圓心偏移 10，直徑為 15
     }
   }

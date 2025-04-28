@@ -48,15 +48,17 @@ function drawOverlayGraphics() {
   overlayGraphics.background(0); // 設定背景為黑色
   overlayGraphics.noStroke();
 
-  // 每隔 20 單位繪製一個圓
+  // 每隔 20 單位繪製一個方框和圓
   for (let x = 0; x < overlayGraphics.width; x += 20) {
     for (let y = 0; y < overlayGraphics.height; y += 20) {
       // 從 capture 中取得相對應位置的顏色
       let col = capture.get(x, y);
-      // 計算灰階值 (RGB 相加後除以 3)
-      let gray = (red(col) + green(col) + blue(col)) / 3;
-      overlayGraphics.fill(gray); // 設定圓的顏色為灰階值
-      overlayGraphics.ellipse(x + 10, y + 10, 15, 15); // 圓心偏移 10，直徑為 15
+      let g = green(col); // 取得 G 值
+      overlayGraphics.fill(0, g, 100); // 設定方框顏色 (R=0, G=G 值, B=100)
+      overlayGraphics.rect(x + 1, y + 1, 18, 18); // 繪製方框，寬高為 18
+
+      overlayGraphics.fill(0); // 設定圓的顏色為黑色
+      overlayGraphics.ellipse(x + 10, y + 10, 5, 5); // 繪製圓，圓心在方框中心，直徑為 5
     }
   }
 }
